@@ -1,0 +1,7 @@
+shell
+shell -p du --max-depth=1 -h --apparent-size
+exit
+open_with mplayer
+open_with 
+shell ls
+

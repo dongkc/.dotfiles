@@ -1,0 +1,50 @@
+!URXVT
+URxvt*termName:    rxvt
+URxvt*scrollBar:   false
+URxvt*urlLauncher: google-chrome
+URxvt*buffered: true
+!URxvt*font: xft:monospace:size=11:antialias=true:xft:wqy-zenhei:pixsize=24:antialias=true
+!URxvt*font: xft:Bitstream Vera Sans Mono:size=11:antialias=true
+URxvt*font: xft:Bitstream Vera Sans Mono:size=11:antialias=true,xft:WenQuanYi Zen Hei:size=14:antialias=true
+!URxvt*font: xft:inconsolata:pixelsize=12
+!URxvt*font:           -*-monospace-*-*-*-12-*-*-*-*-*-*-*
+!URxvt*boldFont:       -*-monospace-*-*-*-12-*-*-*-*-*-*-*
+!URxvt*italicFont:     -*-monospace-*-*-12-*-*-*-*-*-*-*
+!URxvt*boldItalicFont: -*-monospace-*-*-12-*-*-*-*-*-*-*
+URxvt*transparent:false 
+URxvt*shading: 100
+URxvt*letterSpace: -2
+URxvt*cursorBlink: False
+URxvt*savelines:1000000
+URxvt*depth:32
+URxvt*preeditType: OffTheSpot
+URxvt*perl-ext-common: true
+URxvt*perl-ext-common: default,clipboard
+URxvt*urgentOnBell: true
+!COLOURS
+*background:  #333333
+!*background:  #1a1918
+*foreground:  #dddddd
+URxvt*background: #2B2B2B
+URxvt*foreground: #DEDEDE
+!URxvt*background:  #1a1918
+!URxvt*foreground:  #807b76
+!#include "/root/.config/Xcolours/allblue"
+!#include "/root/.config/Xcolours/allgreen"
+!#include "/root/.config/Xcolours/bright"
+!#include "/root/.config/Xcolours/bright2"
+!#include "/root/.config/Xcolours/yelloworange"
+!#include "/root/.config/Xcolours/greenish"
+!#include "/root/.config/Xcolours/brightest"
+!#include "/root/.config/Xcolours/boring"
+!#include "/root/.config/Xcolours/pale"
+!#include "/root/.config/Xcolours/pale2"
+!#include "/root/.config/Xcolours/darkish"
+!#include "/root/.config/Xcolours/brightorange"
+!#include "/root/.config/Xcolours/boring2"
+#include "/root/.config/Xcolours/gnome"
+
+!XSCREENSAVER
+#include "/root/.config/Xcolours/xscreendark"
+Xcursor*theme: xcursor-human
+Xcursor*size: 22
