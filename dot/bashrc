@@ -1,69 +1,84 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# /etc/bash/bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoreboth
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
+fi
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.  #65623
+# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# Enable history appending instead of overwriting.  #139609
+shopt -s histappend
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
+# Change the window title of X terminals 
+case ${TERM} in
+	xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+		;;
+	screen)
+		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+		;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+use_color=false
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+# Set colorful PS1 only on colorful terminals.
+# dircolors --print-database uses its own built-in database
+# instead of using /etc/DIR_COLORS.  Try to use the external file
+# first to take advantage of user additions.  Use internal bash
+# globbing instead of external grep binary.
+safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+match_lhs=""
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+[[ -z ${match_lhs}    ]] \
+	&& type -P dircolors >/dev/null \
+	&& match_lhs=$(dircolors --print-database)
+[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if ${use_color} ; then
+	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+	if type -P dircolors >/dev/null ; then
+		if [[ -f ~/.dir_colors ]] ; then
+			eval $(dircolors -b ~/.dir_colors)
+		elif [[ -f /etc/DIR_COLORS ]] ; then
+			eval $(dircolors -b /etc/DIR_COLORS)
+		fi
+	fi
+
+	if [[ ${EUID} == 0 ]] ; then
+		PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+	else
+		PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+	fi
+
+	alias ls='ls --color=auto'
+	alias grep='grep --colour=auto'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	if [[ ${EUID} == 0 ]] ; then
+		# show root@ when we don't have colors
+		PS1='\u@\h \W \$ '
+	else
+		PS1='\u@\h \w \$ '
+	fi
 fi
-unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# Try to keep environment pollution down, EPA loves us.
+unset use_color safe_term match_lhs
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -78,18 +93,18 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -110,12 +125,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-PATH="$HOME/bin/android-sdk-linux/tools:$PATH"
-
 export PATH
 
-# nntp server
 export NNTPSERVER=news.gmane.org
 export EDITOR=vim
 
-export MAIL=/home/hli/mail/inbox
+export MAIL=/home/dongkc/mail/inbox
+
+#ps -e |grep ranger &> /dev/null || ranger

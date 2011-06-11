@@ -1,0 +1,7 @@
+My personal config files and scripts.
+
+To setup a new environment, run "setup".
+
+It only replace symlinks, not any existing files.
+
+This is based on http://github.com/sjbach/env/tree/master. 
