@@ -1,0 +1,3 @@
+#!/bin/sh
+
+tar czf /data/config.tar.gz /home/hli/{.bash_history,.bashrc,.cvspass,.dmrc,.emacs,.emacs.el,.exrc,.gitk,.gnus.el,.inputrc,.kermrc,.lesshst,.mutt,.nautilus,.profile,.scim,.ssh,.viminfo,.vimrc}

@@ -1,0 +1,12 @@
+[options]
+delete = true
+
+[retriever]
+type = SimpleIMAPSSLRetriever
+server = imap.gmail.com
+username = lihong.hi
+password = darlihroy
+
+[destination]
+type = Mboxrd
+path = ~/mail/inbox.new

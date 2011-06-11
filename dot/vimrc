@@ -1,0 +1,167 @@
+set nocompatible
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+
+set history=1000
+
+" interface
+colorscheme torte
+
+" Make backspace delete lots of things
+set backspace=indent,eol,start
+
+" The following are commented out as they cause vim to behave a lot
+" differently from regular Vi. They are highly recommended though.
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+
+" set hlsearch
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+set incsearch		" Incremental search
+set smartcase		" Do smart case matching
+set autowrite		" Automatically save before commands like :next and :make
+
+" * The current buffer can be put to the background without writing to disk;
+" * When a background buffer becomes current again, marks and undo-history are remembered.
+set hidden 
+
+set mouse=a		" Enable mouse usage (all modes) in terminals
+
+set visualbell
+set noerrorbells
+
+set nu
+set ruler
+set cindent
+
+let mapleader = ","
+
+" Keep more lines of context
+set scrolloff=3
+
+set title
+
+runtime macros/matchit.vim
+
+set wildmenu
+set wildmode=list:longest
+
+" Auto-backup files and .swp files don't go to pwd
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" encoding
+set fileencodings=utf-8,gb18030,utf-16,big5
+
+" cscope 
+
+if has("cscope")
+	set csprg=/usr/bin/cscope
+
+    	" use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+	set cscopetag
+
+    	" check cscope for definition of a symbol before checking ctags: set to 1
+    	" if you want the reverse search order.
+	set csto=0
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+		cs add cscope.out
+		" else add database pointed to by environment
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+	set csverb
+endif
+
+" The following maps all invoke one of the following cscope search types:
+"
+"   's'   symbol: find all references to the token under cursor
+"   'g'   global: find global definition(s) of the token under cursor
+"   'c'   calls:  find all calls to the function name under cursor
+"   't'   text:   find all instances of the text under cursor
+"   'e'   egrep:  egrep search for the word under cursor
+"   'f'   file:   open the filename under cursor
+"   'i'   includes: find files that include the filename under cursor
+"   'd'   called: find functions that function under cursor calls
+"
+nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" winmanager
+map <c-w><c-t> :WMToggle<cr>
+map <c-w><c-f> :FirstExplorerWindow<cr>
+map <c-w><c-b> :BottomExplorerWindow<cr>
+
+
+" abbreviation
+
+
+" = indent
+"map = ggVG:!indent -nut -st -kr 2>/dev/null<CR>G
+
+" buffer swift
+" map <Left> :bp<CR>
+" map <Right> :bn<CR>
+" map <F6> :bd<CR>
+
+" date insert
+map <F2> :r !LANG= date +"\%x \%X"<CR>A<Tab>
+
+" self define map
+nmap <Leader>b :call Backname()<CR>
+
+" visual
+set selection=exclusive
+
+
+" fold
+syn region myFold start="{" end="}" transparent fold
+syn sync fromstart
+set foldmethod=syntax
+set foldnestmax=3
+set foldcolumn=4
+hi Folded       ctermfg=green ctermbg=black
+hi FoldColumn    ctermbg=black ctermfg=white
+
+autocmd FileType text setlocal textwidth=80
+autocmd FileType mail setlocal textwidth=78
+autocmd FileType c setlocal textwidth=80
+
+set swb=usetab
+
+" bufExplorer
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+let g:bufExplorerShowUnlisted=1      " Show unlisted buffers.
+
+
+" c.vim
+let g:C_MapLeader = " "
+
+" complete
+set completeopt=longest,menu
+
+" supertab
+let g:SuperTabDefaultCompletionType="<c-x><c-o>"
+
+" grep
+nnoremap <silent> <F3> :Grep<CR>
+
+" minibuf
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1 

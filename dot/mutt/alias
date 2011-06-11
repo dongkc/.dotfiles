@@ -1,0 +1,9 @@
+alias -group topmain andrew Andrew Morton <akpm@linux-foundation.org> 
+alias -group topmain mingo Ingo Molnar <mingo@elte.hu>
+alias -group btrfs chris Chris Mason <chris.mason@oracle.com>
+alias doug Doug Thompson <dougthompson@xmission.com>
+alias borislav Borislav Petkov <borislav.petkov@amd.com>
+alias -group trace steven Steven Rostedt <rostedt@goodmis.org>
+alias -group list llk linux-kernel@vger.kernel.org
+alias -group list lbtrfs linux-btrfs@vger.kernel.org
+

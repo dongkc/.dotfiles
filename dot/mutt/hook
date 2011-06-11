@@ -1,0 +1,4 @@
+folder-hook . 'push <collapse-all>'
+folder-hook . 'set mbox=Maildir'
+folder-hook ~/mail/archive 'set mbox=mbox'
+

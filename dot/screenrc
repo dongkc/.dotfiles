@@ -1,0 +1,61 @@
+# no audible bell, just visual
+vbell off
+vbell_msg "Ding Ding"
+
+#escape ^ss
+
+# detach on hangup
+autodetach on
+
+# don't display copyright page
+startup_message off
+
+# scroll back
+defscrollback 30000
+
+# look and feel
+#caption always "%{= 11}%{+b w}Screen: %n | %h %=%t %c"
+#hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+#hardstatus alwayslastline “%{kB}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{kB}%?%+Lw%?”
+#hardstatus alwayslastline "%?%{ Wk}%-Lw%?%{Rk}%n*%f %t%?(%u)%?%?%{Wk}%+Lw%? %{Rk}%=%c %{rk}%d/%M/%Y"
+#hardstatus alwayslastline "%{+b Rk}(%{-b g}$LOGNAME@%H%{+b R}) (%{-b g}%C %a%{+b R}) %{-b g} %n %t %h"
+#hardstatus alwayslastline "%{+b kr}[ %H ] %{ky} Load: %l %-=%{kb} %c  %d.%m.%Y"
+#hardstatus alwayslastline "%{+b kr}[ %H ] %{kw} Load: %l %-=%  %{kb} %c:%s  %d.%m.%Y "
+#hardstatus alwayslastline '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
+#hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-b gk}%+w%<"
+
+# default windows
+screen -t irssi bash
+screen -t xcoder bash
+screen -t snap bash
+screen -t git bash
+#screen -t rtorrent rtorrent
+#screen -t centerim centerim
+#screen -t ncmpc ncmpc -c
+#screen -t mutt mutt
+#screen -t tig tig
+screen -t bash
+select 0
+
+altscreen on
+defbce on
+deflogin on
+defflow off
+defutf8 on
+nethack on
+nonblock on
+
+#term screen-256color
+
+# key bind
+bindkey "^[Od" prev  # change window with ctrl-left
+bindkey "^[Oc" next  # change window with ctrl-right
+
+# warning of activity
+activity "Activity in %t(%n)"
+
+# msg
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+msgwait 10
+

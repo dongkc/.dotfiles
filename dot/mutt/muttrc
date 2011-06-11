@@ -1,0 +1,28 @@
+# source
+#  .muttset must be sourced first
+source ~/.mutt/set
+source $alias_file
+source ~/.mutt/hook
+source ~/.mutt/mailbox
+
+# header
+my_hdr X-Operating-System: `uname -a`
+
+
+# lists & subscribe
+lists -group ml.kernel .*@vger.kernel.org
+subscribe linux-kernel@vger.kernel.org
+lists -group ml.vim vim_use@googlegroups.com vim_dev@googlegroups.com \
+ 	      mutt-users@mutt.org vim-dev@vim.org mutt-dev@mutt.org 
+subscribe vim_use@googlegroups.com vim_dev@googlegroups.com \
+ 	      mutt-users@mutt.org vim-dev@vim.org mutt-dev@mutt.org 
+ 
+# macro
+
+
+ignore *
+unignore From Date Subject To Cc Lines User-Agent
+
+hdr_order Subject Date From To Cc Lines User-Agent
+
+

@@ -1,0 +1,39 @@
+# vim:ft=muttrc:syntax=muttrc
+
+#set folder='imaps://username@imap.gmail.com/'
+#
+#set spoolfile='+INBOX'
+#set postponed='+[Gmail]/Drafts'
+#set record='+[Gmail]/Sent Mail'
+#set trash='+[Gmail]/Trash'
+#mailboxes +INBOX
+#mailboxes '+[Gmail]/All Mail'
+#mailboxes "+ml.git"
+#mailboxes "+ml.kernel"
+#mailboxes "+ml.kernel.announce"
+#mailboxes "+ml.kernel.kbuild"
+#mailboxes "+ml.kernel.net"
+#mailboxes "+ml.kernel.netdev"
+#mailboxes "+ml.kernel.xiyou"
+#mailboxes "+ml.kernel.zh"
+#mailboxes "+ml.misc"
+#mailboxes "+ml.misc.send"
+#mailboxes "+ml.mutt.dev"
+#mailboxes "+ml.mutt.user"
+#mailboxes "+ml.qemu.dev"
+#mailboxes "+ml.vger"
+#mailboxes "+ml.vger.send"
+#mailboxes "+ml.vim.send"
+#mailboxes "+ml.vim.dev"
+#mailboxes "+ml.vim.user"
+#mailboxes "+private"
+#
+#bind editor <space> noop
+#macro index gi "<change-folder> +INBOX<enter>" "Go to inbox"
+#macro index ga "<change-folder> +[Gmail]/All Mail<enter>" "Go to all mail"
+#macro index gs "<change-folder> +[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
+#macro index gd "<change-folder> +[Gmail]/Drafts<enter>" "Go to drafts"
+#macro index gp "<change-folder> +private<enter>" "Go to private"
+#macro index gl "<change-folder> ~/mail<enter>" "Go to private"
+#
+mailboxes +inbox

@@ -1,0 +1,35 @@
+#!/bin/sh
+
+cd '/home/hli'
+
+# Save the structure of my home directory
+#DIR='. ./incoming ./track ./untrack ./temptrack ./vm'
+#DIRLOG='./dirs'
+#echo "Saving the directory structure ..."
+#rm -f $DIRLOG
+#for d in $DIR
+#do
+#	echo "$d >>" >> $DIRLOG
+#	ls -lh $d >> $DIRLOG 
+#	printf "\n\n" >> $DIRLOG
+#done
+#
+# Tar files
+BKFILE='.bashrc .emacs.el .gnus.el .viminfo .vimrc hong '
+echo "Taring the important files ... "
+tar -cjf /tmp/hli.tar.gz $BKFILE
+
+
+# Backup 
+echo "Moving tar file to /media/disk ..."
+#sudo mv -f /tmp/hli.tar.gz /media/disk
+
+# Sync the doc
+#echo "Syncing the document resouces ... "
+#sudo rsync -r --delete doc /media/disk
+
+
+# Clean
+#echo "Cleaning work... "
+#rm -f $DIRLOG
+cd -

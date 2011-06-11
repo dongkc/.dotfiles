@@ -1,0 +1,4 @@
+alias ac='find . -name "*.[chsS]" >cscope.files; cscope'
+alias ag='getmail;  cat ~/mail/inbox.new >> ~/mail/inbox.grow; mv ~/mail/inbox.new ~/mail/inbox.$(date +%Y-%m-%d-%s); touch ~/mail/inbox.new'
+alias at='cat /proc/acpi/ibm/thermal'
+alias af='cat /proc/acpi/ibm/fan'

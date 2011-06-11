@@ -1,0 +1,2 @@
+supertab.vba: call delete('/home/hli/.vim/doc/supertab.txt')|call delete('/home/hli/.vim/plugin/supertab.vim')
+DrawIt.vba: call delete('/home/hli/.vim/plugin/DrawItPlugin.vim')|call delete('/home/hli/.vim/plugin/cecutil.vim')|call delete('/home/hli/.vim/autoload/DrawIt.vim')|call delete('/home/hli/.vim/doc/DrawIt.txt')

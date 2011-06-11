@@ -1,0 +1,5 @@
+#!/bin/bash
+export PWD=`pwd`
+cd ~/repo/kernel-remote 
+git archive --prefix=`git describe $1`/ $1 | gzip >$2
+cd $PWD
