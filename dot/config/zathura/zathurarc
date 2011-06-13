@@ -1,0 +1,2 @@
+map <PageUp> scroll full_up
+map <PageDown> scroll full_down

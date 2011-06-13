@@ -28,7 +28,7 @@ colbcya = "<span color='#9bcdff'>"
 colbwhi = "<span color='#ffffff'>"
 
 -- THEME
-beautiful.init("/root/.config/awesome/themes/dongkc/theme.lua")
+beautiful.init("/home/dongkc/.config/awesome/themes/dongkc/theme.lua")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers

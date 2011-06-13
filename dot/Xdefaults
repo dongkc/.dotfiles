@@ -29,22 +29,22 @@ URxvt*background: #2B2B2B
 URxvt*foreground: #DEDEDE
 !URxvt*background:  #1a1918
 !URxvt*foreground:  #807b76
-!#include "/root/.config/Xcolours/allblue"
-!#include "/root/.config/Xcolours/allgreen"
-!#include "/root/.config/Xcolours/bright"
-!#include "/root/.config/Xcolours/bright2"
-!#include "/root/.config/Xcolours/yelloworange"
-!#include "/root/.config/Xcolours/greenish"
-!#include "/root/.config/Xcolours/brightest"
-!#include "/root/.config/Xcolours/boring"
-!#include "/root/.config/Xcolours/pale"
-!#include "/root/.config/Xcolours/pale2"
-!#include "/root/.config/Xcolours/darkish"
-!#include "/root/.config/Xcolours/brightorange"
-!#include "/root/.config/Xcolours/boring2"
-#include "/root/.config/Xcolours/gnome"
+!#include "/home/dongkc/.config/Xcolours/allblue"
+!#include "/home/dongkc/.config/Xcolours/allgreen"
+!#include "/home/dongkc/.config/Xcolours/bright"
+!#include "/home/dongkc/.config/Xcolours/bright2"
+!#include "/home/dongkc/.config/Xcolours/yelloworange"
+!#include "/home/dongkc/.config/Xcolours/greenish"
+!#include "/home/dongkc/.config/Xcolours/brightest"
+!#include "/home/dongkc/.config/Xcolours/boring"
+!#include "/home/dongkc/.config/Xcolours/pale"
+!#include "/home/dongkc/.config/Xcolours/pale2"
+!#include "/home/dongkc/.config/Xcolours/darkish"
+!#include "/home/dongkc/.config/Xcolours/brightorange"
+!#include "/home/dongkc/.config/Xcolours/boring2"
+#include "/home/dongkc/.config/Xcolours/gnome"
 
 !XSCREENSAVER
-#include "/root/.config/Xcolours/xscreendark"
+#include "/home/dongkc/.config/Xcolours/xscreendark"
 Xcursor*theme: xcursor-human
 Xcursor*size: 22
