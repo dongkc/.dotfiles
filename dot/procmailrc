@@ -1,6 +1,6 @@
 VERBOSE=off                   # Turn on for verbose log
-MAILDIR=/home/hli/mail/       # Where Procmail recipes deliver
-LOGFILE=/home/hli/.procmaillog    # Keep a log for troubleshooting.
+MAILDIR=/home/dongkc/Mail/       # Where Procmail recipes deliver
+LOGFILE=/home/dongkc/.procmaillog    # Keep a log for troubleshooting.
 :0
 inbox/
 # Recipes
