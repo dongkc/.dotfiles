@@ -6,6 +6,20 @@ filetype indent on
 
 set history=1000
 
+"latex settings
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
 " interface
 colorscheme torte
 
@@ -18,7 +32,7 @@ set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 
-" set hlsearch
+set hlsearch
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 set incsearch		" Incremental search
@@ -29,7 +43,7 @@ set autowrite		" Automatically save before commands like :next and :make
 " * When a background buffer becomes current again, marks and undo-history are remembered.
 set hidden 
 
-set mouse=a		" Enable mouse usage (all modes) in terminals
+"set mouse=a		" Enable mouse usage (all modes) in terminals
 
 set visualbell
 set noerrorbells
@@ -55,7 +69,7 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " encoding
-set fileencodings=utf-8,gb18030,utf-16,big5
+set fileencodings=utf-8,gbk,gb18030,utf-16,big5
 
 " cscope 
 
@@ -94,8 +108,8 @@ endif
 nmap <Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap <Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
@@ -105,6 +119,9 @@ nmap <Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 map <c-w><c-t> :WMToggle<cr>
 map <c-w><c-f> :FirstExplorerWindow<cr>
 map <c-w><c-b> :BottomExplorerWindow<cr>
+let g:winManagerWindowLayout='FileExplorer|TagList'
+"nmap wm :WMToggle<CR>
+let g:winManagerWidth=35
 
 
 " abbreviation
@@ -133,7 +150,7 @@ syn region myFold start="{" end="}" transparent fold
 syn sync fromstart
 set foldmethod=syntax
 set foldnestmax=3
-set foldcolumn=4
+"set foldcolumn=4
 hi Folded       ctermfg=green ctermbg=black
 hi FoldColumn    ctermbg=black ctermfg=white
 
@@ -149,7 +166,9 @@ let g:bufExplorerShowUnlisted=1      " Show unlisted buffers.
 
 
 " c.vim
-let g:C_MapLeader = " "
+let g:C_MapLeader = ","
+let g:winManagerWindowLayout='FileExplorer|TagList'
+nmap wm :WMToggle<cr>
 
 " complete
 set completeopt=longest,menu
@@ -165,3 +184,38 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+
+" taglist
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+"set t_Co=256
+
+nnoremap <silent> <F10> :TlistToggle<CR>
+
+let g:DoxygenToolkit_briefTag_pre="@synopsis: " 
+let g:DoxygenToolkit_paramTag_pre="@para: " 
+let g:DoxygenToolkit_returnTag="@return: " 
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+
+"vimim 
+let g:vimim_enable_smart_space=1
+let g:vimim_enable_dynamic_menu=1
+let g:vimim_enable_fuzzy_search=1
+let g:vimim_enable_fuzzy_pinyin=1
+let g:vimim_enable_menu_label=1
+
+fun Ranger()
+  silent !ranger --choosefile=/tmp/chosen
+  if filereadable('/tmp/chosen')
+    exec 'edit ' . system('cat /tmp/chosen')
+    call system('rm /tmp/chosen')
+  endif
+  redraw!
+endfun
+map <leader>r :call Ranger()<CR>
+

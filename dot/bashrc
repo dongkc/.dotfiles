@@ -130,6 +130,14 @@ export PATH
 export NNTPSERVER=news.gmane.org
 export EDITOR=vim
 
-export MAIL=/home/dongkc/mail/inbox
+export MAIL=~/Mail/inbox
 
-#ps -e |grep ranger &> /dev/null || ranger
+function ranger-cd {
+  ranger --choosedir=/tmp/chosen
+  if [ -f /tmp/chosen -a "$(cat /tmp/chosen)" != "$(pwd | tr -d "\n")" ]; then
+    cd "$(cat /tmp/chosen)"
+  fi
+  rm -f /tmp/chosen
+}
+bind '"\C-o":"ranger-cd\C-m"'
+
