@@ -126,6 +126,9 @@ let g:winManagerWidth=35
 
 " abbreviation
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " = indent
 "map = ggVG:!indent -nut -st -kr 2>/dev/null<CR>G
@@ -189,13 +192,13 @@ let g:miniBufExplModSelTarget = 1
 " taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+nnoremap <silent> <F10> :TlistToggle<CR>
 
 set expandtab
 set tabstop=4
 set shiftwidth=4
 "set t_Co=256
 
-nnoremap <silent> <F10> :TlistToggle<CR>
 
 let g:DoxygenToolkit_briefTag_pre="@synopsis: " 
 let g:DoxygenToolkit_paramTag_pre="@para: " 
@@ -219,4 +222,3 @@ fun Ranger()
   redraw!
 endfun
 map <leader>r :call Ranger()<CR>
-
