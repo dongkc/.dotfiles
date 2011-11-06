@@ -3,7 +3,8 @@
 "========================================================
 syn match   cFunction "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
 syn match   cFunction "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
-hi cFunction        gui=NONE guifg=#B5A1FF
+"hi def cFunction        gui=bold guifg=cyan
+hi def cFunction        cterm=bold ctermfg=202
 
 "========================================================
 " Highlight All Math Operator
@@ -24,10 +25,11 @@ syn match       cLogicalOperator  display "&&\|||"
 syn match       cLogicalOperatorError display "\(&&\|||\)="
 
 " Math Operator
-hi cMathOperator            guifg=#3EFFE2
-hi cPointerOperator         guifg=#3EFFE2
-hi cLogicalOperator         guifg=#3EFFE2
-hi cBinaryOperator          guifg=#3EFFE2
-hi cBinaryOperatorError     guifg=#3EFFE2
-hi cLogicalOperator         guifg=#3EFFE2
-hi cLogicalOperatorError    guifg=#3EFFE2
+hi MyOperator ctermfg=178
+hi def link cMathOperator MyOperator
+hi def link cPointerOperator MyOperator
+hi def link cLogicalOperator MyOperator
+hi def link cBinaryOperator MyOperator
+hi def link cBinaryOperatorError MyOperator
+hi def link cLogicalOperator MyOperator
+hi def link cLogicalOperatorError MyOperator

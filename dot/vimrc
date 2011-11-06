@@ -2,7 +2,6 @@ set nocompatible
 syntax on
 filetype on
 filetype plugin on
-filetype indent on
 
 set history=1000
 
@@ -21,7 +20,8 @@ filetype indent on
 let g:tex_flavor='latex'
 
 " interface
-colorscheme torte
+" colorscheme torte
+colorscheme molokai
 
 " Make backspace delete lots of things
 set backspace=indent,eol,start
@@ -197,7 +197,7 @@ nnoremap <silent> <F10> :TlistToggle<CR>
 set expandtab
 set tabstop=4
 set shiftwidth=4
-"set t_Co=256
+set t_Co=256
 
 
 let g:DoxygenToolkit_briefTag_pre="@synopsis: " 
@@ -212,6 +212,7 @@ let g:vimim_enable_dynamic_menu=1
 let g:vimim_enable_fuzzy_search=1
 let g:vimim_enable_fuzzy_pinyin=1
 let g:vimim_enable_menu_label=1
+"let g:acp_behaviorSnipmateLength=1
 
 fun Ranger()
   silent !ranger --choosefile=/tmp/chosen

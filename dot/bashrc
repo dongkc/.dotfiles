@@ -105,6 +105,9 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias newsmth='luit -encoding gbk telnet newsmth.org'
+alias tov='cd $PROJECT_ROOT_DIR'
+export PROJECT_ROOT_DIR=${HOME}/repo/gprs_server
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -116,9 +119,6 @@ fi
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
-
-# add /root/bin
-PATH="/root/bin:$PATH"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -141,3 +141,7 @@ function ranger-cd {
 }
 bind '"\C-o":"ranger-cd\C-m"'
 
+export CROSS_COMPILE=arm-linux-
+#export CROSS_COMPILE=arm-none-linux-gnueabi-
+PATH=$PATH:~/bin/eldk/usr/bin:~/bin/eldk/bin
+#export BBPATH=/home/dongkc/work/my_OE/build:/home/dongkc/work/my_OE//openembedded
