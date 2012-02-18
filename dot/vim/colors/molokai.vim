@@ -174,7 +174,8 @@ if &t_Co > 255
    hi PreProc         ctermfg=118
    hi Question        ctermfg=81
    hi Repeat          ctermfg=161               cterm=bold
-   hi Search          ctermfg=253 ctermbg=66
+   "hi Search          ctermfg=253 ctermbg=66
+   hi Search          ctermfg=253 ctermbg=160
 
    " marks column
    hi SignColumn      ctermfg=118 ctermbg=235
@@ -190,15 +191,15 @@ if &t_Co > 255
    hi Structure       ctermfg=81
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+   hi Todo            ctermfg=232 ctermbg=178   cterm=bold
 
    hi Typedef         ctermfg=81
    hi Type            ctermfg=81                cterm=bold
    hi Underlined      ctermfg=244               cterm=underline
 
    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=235
+   hi VisualNOS                   ctermbg=100
+   hi Visual          ctermfg=234            ctermbg=160
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
