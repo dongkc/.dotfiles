@@ -105,6 +105,7 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias dstat='dstat -cdlmnpsy'
 alias newsmth='luit -encoding gbk telnet newsmth.org'
 alias tov='cd $PROJECT_ROOT_DIR'
 export PROJECT_ROOT_DIR=${HOME}/repo/gprs_server
@@ -140,6 +141,7 @@ function ranger-cd {
   rm -f /tmp/chosen
 }
 bind '"\C-o":"ranger-cd\C-m"'
+bind '"\C-l":"xscreensaver-command --lock\C-m"'
 
 export CROSS_COMPILE=arm-linux-
 #export CROSS_COMPILE=arm-none-linux-gnueabi-

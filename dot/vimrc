@@ -182,6 +182,7 @@ let g:SuperTabDefaultCompletionType="<c-x><c-o>"
 
 " grep
 nnoremap <silent> <F3> :Grep<CR>
+inoremap jk <esc> 
 
 " minibuf
 let g:miniBufExplMapWindowNavVim = 1
@@ -223,3 +224,6 @@ fun Ranger()
   redraw!
 endfun
 map <leader>r :call Ranger()<CR>
+
+map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
