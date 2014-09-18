@@ -108,7 +108,12 @@ alias l='ls -CF'
 alias dstat='dstat -cdlmnpsy'
 alias newsmth='luit -encoding gbk telnet newsmth.org'
 alias tov='cd $PROJECT_ROOT_DIR'
-export PROJECT_ROOT_DIR=${HOME}/repo/gprs_server
+alias make='make -j8'
+alias win='xfreerdp -g 1800x1050 -K -u Administrator -p dong -o -D -a 32 192.168.1.106 &'
+alias cu='cu serial'
+alias rr='tmux attach -t rt'
+alias gita='git commit -a'
+export PROJECT_ROOT_DIR=${HOME}/workspace/gateway/
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -117,13 +122,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$HOME/bin/arm-2012.03/bin:$PATH"
 fi
 
 export PATH
@@ -143,7 +144,10 @@ function ranger-cd {
 bind '"\C-o":"ranger-cd\C-m"'
 bind '"\C-l":"xscreensaver-command --lock\C-m"'
 
-export CROSS_COMPILE=arm-linux-
-#export CROSS_COMPILE=arm-none-linux-gnueabi-
-PATH=$PATH:~/bin/eldk/usr/bin:~/bin/eldk/bin
-#export BBPATH=/home/dongkc/work/my_OE/build:/home/dongkc/work/my_OE//openembedded
+#export CROSS_COMPILE=arm-linux-
+export CROSS_COMPILE=arm-none-linux-gnueabi-
+export QPCPP=~/repo/qpcpp/
+export OEBASE=/media/repo/poky
+export PATH=$OEBASE/bitbake/bin:$PATH
+export BBPATH=$OEBASE/build-atmel
+export BB_ENV_EXTRAWHITE="OEBASE"
